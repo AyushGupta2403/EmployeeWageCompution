@@ -10,23 +10,25 @@ isParttime=0
 
 #constants
 WAGE_PER_HOUR=20
-EMP_HOUR_FULL_TIME=8
-EMP_HOUR_PART_TIME=8
+DAYS_IN_MONTH=20
 
 if [ $isPresent  == $randomCheck ]
 then
 	case $timeCheck in $isFullTime )
-		echo "Employee is present and is a FullTime Employee"
-		wagePerDay=$(( $WAGE_PER_HOUR * $$EMP_HOUR_FULL_TIME ))
-		echo "Wage Per Day" $wagePerDay
+			echo "Employee is present and is a FullTime Employee"
+			empHrs=8
 					;;
 	$isPartTime )
-		echo "Employee is present and is a PartTime Employee"
+			echo "Employee is present and is a PartTime Employee"
 
-		wagePerDay=$(( $WAGE_PER_HOUR*$EMP_HOUR_PART_TIME ))
-        	echo "Wage Per Day" $wagePerDay
-					;;
+			empHrs=8
+        				;;
 	esac
 else
 		echo "Employee is absent"
+		empHrs=0
 fi
+
+wagePerDay=$(( $WAGE_PER_HOUR*$empHrs ))
+salary=$(( $wagePerDay*$DAYS_IN_MONTH ))
+echo " Salary " $salary
