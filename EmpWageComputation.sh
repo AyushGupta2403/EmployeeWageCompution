@@ -46,4 +46,5 @@ done
 totalSalary=$(( $workHours*$WAGE_PER_HOUR ))
 echo "Total Salary:"
 echo $totalSalary
-echo "Daily Wage : " $(employeeDailyWage[@]}
+echo "Daily Wage : " ${employeeDailyWage[@]}
+echo "Days :" ${!employeeDailyWage[@]}
