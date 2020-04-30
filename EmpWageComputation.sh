@@ -7,28 +7,31 @@ randomCheck=$((RANDOM%2))
 timeCheck=$((RANDOM%2))
 isFullTime=1
 isParttime=0
+workHours=0
+workdays=1
 
 #constants
 WAGE_PER_HOUR=20
 DAYS_IN_MONTH=20
+TOTAL_WORKING_HOURS
 
-if [ $isPresent  == $randomCheck ]
-then
+while (( workHours<TOTAL_WORKING_HOURS && workDays<DAYS_IN_MONTH ))
+do
+	timeCheck=$((RANDOM%3))
 	case $timeCheck in $isFullTime )
-			echo "Employee is present and is a FullTime Employee"
-			empHrs=8
-					;;
-	$isPartTime )
-			echo "Employee is present and is a PartTime Employee"
-
-			empHrs=8
-        				;;
-	esac
-else
-		echo "Employee is absent"
+		empHrs=8
+		;;
+		$isPartTime )
+		emphrs=8
+		;;
+	*)
 		empHrs=0
-fi
-
-wagePerDay=$(( $WAGE_PER_HOUR*$empHrs ))
-salary=$(( $wagePerDay*$DAYS_IN_MONTH ))
-echo " Salary " $salary
+		;;
+	esac
+	workHours=$(( $workHours+$empHrs ))
+	((workDays++))
+done
+#calculating total salary based on work hours
+totalSalary=$(( $workHours*$WAGE_PER_HOUR ))
+echo "Total Salary:"
+echo $totalSalary
