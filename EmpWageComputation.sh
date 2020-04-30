@@ -2,7 +2,6 @@
 #Welcome to Employee Wage Computation Program on Master Branch
 
 #Variable
-isPresent=1
 isFullTime=1
 isParttime=0
 workHours=0
@@ -28,14 +27,23 @@ function workingHours()
 	esac
 		echo $emphours
 }
+function dailyWage()
+{
+	local workHrs=$1
+	wage=$(($workHr*$WAGE_PER_HOUR))
+	echo $wage
+}
+
 while (( workHours<TOTAL_WORKING_HOURS && workDays<DAYS_IN_MONTH ))
 do
 	timeCheck=$((RANDOM%3))
 	empHrs=$(( workingHours $timeCheck ))
 	workHours=$(( $workHours + $empHrs ))
+	employeeDailyWage[$workDays]=$(dailyWage $empHrs)
 	((workDays++))
 done
 #calculating total salary based on work hours
 totalSalary=$(( $workHours*$WAGE_PER_HOUR ))
 echo "Total Salary:"
 echo $totalSalary
+echo "Daily Wage : " $(employeeDailyWage[@]}
