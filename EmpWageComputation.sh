@@ -13,11 +13,11 @@ workdays=1
 #constants
 WAGE_PER_HOUR=20
 DAYS_IN_MONTH=20
-TOTAL_WORKING_HOURS
+TOTAL_WORKING_HOURS=100
 
-while (( workHours<TOTAL_WORKING_HOURS && workDays<DAYS_IN_MONTH ))
-do
-	timeCheck=$((RANDOM%3))
+function workingHours()
+{
+	timeCheck=$1
 	case $timeCheck in $isFullTime )
 		empHrs=8
 		;;
@@ -28,7 +28,13 @@ do
 		empHrs=0
 		;;
 	esac
-	workHours=$(( $workHours+$empHrs ))
+		echo $emphours
+}
+while (( workHours<TOTAL_WORKING_HOURS && workDays<DAYS_IN_MONTH ))
+do
+	timeCheck=$((RANDOM%3))
+	empHrs=$(( workingHours $timeCheck ))
+	workHours=$(( $workHours + $empHrs ))
 	((workDays++))
 done
 #calculating total salary based on work hours
