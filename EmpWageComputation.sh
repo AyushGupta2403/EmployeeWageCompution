@@ -3,8 +3,6 @@
 
 #Variable
 isPresent=1
-randomCheck=$((RANDOM%2))
-timeCheck=$((RANDOM%2))
 isFullTime=1
 isParttime=0
 workHours=0
